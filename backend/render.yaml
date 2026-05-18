@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: talentiq-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: JWT_SECRET
+        value: talentiq_secret_key_shreya_2024
+      - key: DB_HOST
+        value: localhost
+      - key: DB_PORT
+        value: 5432
+      - key: DB_NAME
+        value: talentiq
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        value: admin123
