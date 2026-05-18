@@ -4,10 +4,15 @@ import AttritionChart from './AttritionChart';
 import SalaryChart from './SalaryChart';
 import NationalityChart from './NationalityChart';
 import EmployeeTable from './EmployeeTable';
+import EmployeesPage from './EmployeesPage';
+import AttritionPage from './AttritionPage';
+import SalaryPage from './SalaryPage';
+import ReportsPage from './ReportsPage';
 
 function Dashboard({ token, onLogout }) {
   const [kpis, setKpis] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activePage, setActivePage] = useState('Dashboard');
 
   const headers = {
     'Authorization': `Bearer ${token}`,
@@ -22,41 +27,61 @@ function Dashboard({ token, onLogout }) {
       .catch(() => setLoading(false));
   }, []);
 
+  const renderPage = () => {
+    switch (activePage) {
+      case 'Employees': return <EmployeesPage token={token} />;
+      case 'Attrition': return <AttritionPage token={token} />;
+      case 'Salary': return <SalaryPage token={token} />;
+      case 'Reports': return <ReportsPage token={token} />;
+      default: return (
+        <>
+          <KPICards kpis={kpis} />
+          <div style={styles.row}>
+            <AttritionChart token={token} />
+            <NationalityChart token={token} />
+          </div>
+          <SalaryChart token={token} />
+          <EmployeeTable token={token} />
+        </>
+      );
+    }
+  };
+
   return (
     <div style={styles.container}>
-      {/* Sidebar */}
       <div style={styles.sidebar}>
         <div style={styles.logo}>
           <h2 style={styles.logoText}>TalentIQ</h2>
-          <p style={styles.logoSub}>UAE HR Analytics</p>
+          <p style={styles.logoSub}>HR Analytics</p>
         </div>
         <nav style={styles.nav}>
           {['Dashboard', 'Employees', 'Attrition', 'Salary', 'Reports'].map(item => (
-            <div key={item} style={styles.navItem}>{item}</div>
+            <div
+              key={item}
+              onClick={() => setActivePage(item)}
+              style={{
+                ...styles.navItem,
+                background: activePage === item ? 'rgba(255,255,255,0.15)' : 'transparent',
+                fontWeight: activePage === item ? '700' : 'normal',
+              }}
+            >
+              {item}
+            </div>
           ))}
         </nav>
         <button onClick={onLogout} style={styles.logout}>Logout</button>
       </div>
 
-      {/* Main Content */}
       <div style={styles.main}>
         <div style={styles.topbar}>
-          <h1 style={styles.pageTitle}>HR Analytics Dashboard</h1>
+          <h1 style={styles.pageTitle}>{activePage === 'Dashboard' ? 'HR Analytics Dashboard' : activePage}</h1>
           <p style={styles.date}>{new Date().toDateString()}</p>
         </div>
 
         {loading ? (
           <p style={{ padding: '40px' }}>Loading dashboard...</p>
         ) : (
-          <>
-            <KPICards kpis={kpis} />
-            <div style={styles.row}>
-              <AttritionChart token={token} />
-              <NationalityChart token={token} />
-            </div>
-            <SalaryChart token={token} />
-            <EmployeeTable token={token} />
-          </>
+          renderPage()
         )}
       </div>
     </div>
@@ -100,6 +125,8 @@ const styles = {
     cursor: 'pointer',
     fontSize: '14px',
     opacity: 0.85,
+    borderRadius: '6px',
+    margin: '2px 8px',
     transition: 'background 0.2s',
   },
   logout: {
