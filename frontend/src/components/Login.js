@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API = 'https://talentiq-rs7t.onrender.com';
+
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -11,7 +13,7 @@ function Login({ onLogin }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('const res = await fetch('https://talentiq-rs7t.onrender.com/login', {
+      const res = await fetch(`${API}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -32,7 +34,7 @@ function Login({ onLogin }) {
     <div style={styles.container}>
       <div style={styles.card}>
         <div style={styles.header}>
-          <h1 style={styles.title}>TalentIQ </h1>
+          <h1 style={styles.title}>TalentIQ</h1>
           <p style={styles.subtitle}>HR & Workforce Analytics Platform</p>
         </div>
         <form onSubmit={handleSubmit} style={styles.form}>
