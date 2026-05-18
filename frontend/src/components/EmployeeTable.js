@@ -11,7 +11,7 @@ function EmployeeTable({ token }) {
     'Marketing', 'Legal', 'Customer Service', 'Logistics', 'Management'];
 
   const fetchEmployees = () => {
-    let url = `http://127.0.0.1:8000/employees?page=${page}&limit=10`;
+    let url = `https://talentiq-rs7t.onrender.com/employees?page=${page}&limit=10`;
     if (department) url += `&department=${department}`;
     fetch(url, {
       headers: { 'Authorization': `Bearer ${token}` }

@@ -7,7 +7,7 @@ function NationalityChart({ token }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/nationality-breakdown', {
+    fetch('https://talentiq-rs7t.onrender.com/nationality-breakdown', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())

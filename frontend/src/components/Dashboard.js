@@ -15,7 +15,7 @@ function Dashboard({ token, onLogout }) {
   };
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/kpis', { headers })
+    fetch('https://talentiq-rs7t.onrender.com/kpis', { headers })
       .then(res => res.json())
       .then(data => { setKpis(data); setLoading(false); })
       .catch(() => setLoading(false));

@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = FastAPI(title="TalentIQ UAE — HR Analytics API", version="1.0.0")
+app = FastAPI(title="TalentIQ — HR Analytics API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -64,7 +64,7 @@ class PredictRequest(BaseModel):
 
 @app.get("/")
 def root():
-    return {"message": "TalentIQ UAE HR Analytics API", "status": "running"}
+    return {"message": "TalentIQ HR Analytics API", "status": "running"}
 
 # Login
 @app.post("/login")

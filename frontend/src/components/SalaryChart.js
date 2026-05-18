@@ -5,7 +5,7 @@ function SalaryChart({ token }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/salary-distribution', {
+    fetch('https://talentiq-rs7t.onrender.com/salary-distribution', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())

@@ -5,7 +5,7 @@ function AttritionChart({ token }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/attrition-by-dept', {
+    fetch('https://talentiq-rs7t.onrender.com/attrition-by-dept', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
