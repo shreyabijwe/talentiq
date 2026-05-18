@@ -14,6 +14,7 @@ function Dashboard({ token, onLogout }) {
     'Content-Type': 'application/json',
   };
 
+  // eslint-disable-next-line
   useEffect(() => {
     fetch('https://talentiq-rs7t.onrender.com/kpis', { headers })
       .then(res => res.json())

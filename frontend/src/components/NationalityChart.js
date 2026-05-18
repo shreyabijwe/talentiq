@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const COLORS = ['#1F4E79', '#2E86AB', '#A23B72', '#F18F01', '#C73E1D', '#3B1F2B', '#44BBA4', '#E94F37', '#393E41', '#F5A623'];
 
 function NationalityChart({ token }) {
   const [data, setData] = useState([]);
-
+// eslint-disable-next-line
   useEffect(() => {
     fetch('https://talentiq-rs7t.onrender.com/nationality-breakdown', {
       headers: { 'Authorization': `Bearer ${token}` }

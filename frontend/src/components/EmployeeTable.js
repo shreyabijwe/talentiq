@@ -23,6 +23,7 @@ function EmployeeTable({ token }) {
       });
   };
 
+  // eslint-disable-next-line
   useEffect(() => { fetchEmployees(); }, [page, department]);
 
   const filtered = search

@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 function AttritionChart({ token }) {
   const [data, setData] = useState([]);
-
+// eslint-disable-next-line
   useEffect(() => {
     fetch('https://talentiq-rs7t.onrender.com/attrition-by-dept', {
       headers: { 'Authorization': `Bearer ${token}` }

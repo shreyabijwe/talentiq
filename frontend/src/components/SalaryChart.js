@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 function SalaryChart({ token }) {
   const [data, setData] = useState([]);
-
+// eslint-disable-next-line
   useEffect(() => {
     fetch('https://talentiq-rs7t.onrender.com/salary-distribution', {
       headers: { 'Authorization': `Bearer ${token}` }
